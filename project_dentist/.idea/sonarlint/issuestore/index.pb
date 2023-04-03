@@ -1,0 +1,67 @@
+
+O
+project_dentist/dentist/apps.py,c\4\c4337a3fb7e827f7ee062c04ca949eea104ca0c3
+W
+'project_dentist/project_dentist/urls.py,8\2\826a9507d393383f058fc07627ef00765318f6e6
+[
++project_dentist/project_dentist/settings.py,2\d\2df1530b9457e43fb9e8d6c4994a0680098589f4
+^
+.project_dentist/templates/personel_update.html,c\7\c735ae0f5e44c7f0960241d8d7f7c970ebfc0739
+S
+#project_dentist/templates/base.html,d\3\d341420f31e1c103fc2e1d915c39400094e1371c
+l
+<project_dentist/templates/branch_offices_confirm_delete.html,e\a\eaecaa92da48c593c5b4b2a122149c752b49f14d
+b
+2project_dentist/templates/branch_offices_list.html,8\4\84df24d6c09bc6f5136d2d5ef75cca739e55e45e
+c
+3project_dentist/templates/delete_branch_office.html,5\f\5f8dd6c586328012b2243c06c8134b1e64fb3bc1
+S
+#project_dentist/templates/home.html,d\2\d2a39dd8e2e96c5b8347fbcef7158710dccd1390
+\
+,project_dentist/templates/patients_list.html,6\a\6a21179ebd28f5faa0483bb5a33f0b37ccf8da4a
+f
+6project_dentist/templates/personel_confirm_delete.html,8\b\8b4a77405180676c8af686589cdee31b3ed58ab0
+c
+3project_dentist/templates/visit_confirm_delete.html,a\d\ad2d928bb64f9bf2cd9e5bd986bee3592bf8eabf
+[
++project_dentist/templates/visit_update.html,7\6\769a926e573f49b1c9c663e2b2d6ec662ccb5a52
+Z
+*project_dentist/templates/visits_list.html,f\d\fd9e4c5ce0b01c41848e677d7cde7132a6810523
+Z
+*project_dentist/templates/visits_form.html,d\4\d40f217dbc3026c43af1533ca63c68b7bf829343
+\
+,project_dentist/templates/personel_list.html,a\7\a7fdc12779046fa2c7f65a33cdc62eb1d7699d90
+Q
+!project_dentist/dentist/models.py,3\6\36d8865467eaf2192ca4f66bb5ab46b7f1fc860e
+P
+ project_dentist/dentist/tests.py,6\c\6cb59d4de83405149bbafb4a42d0b2352cf32755
+O
+project_dentist/dentist/urls.py,0\9\096f8f4ab5660ccd247c42a21c4950195084801d
+P
+ project_dentist/dentist/admin.py,7\6\76ec60e9a3e930b09547c68d6b686c50eaad2d68
+a
+1project_dentist/templates/registration/login.html,d\8\d88c898a0713b7c3163073223b13ec49acdfc7e2
+d
+4project_dentist/templates/branch_offices_update.html,c\8\c8ea6881ad5c6ab882194ef6fa209280fd2a2440
+\
+,project_dentist/templates/patients_form.html,6\a\6a893931c9b92a94ae5d29ccaeeed171581c274b
+d
+4project_dentist/templates/branch_offices_detail.html,e\3\e3a6ca3e0ee1e6ec1c1530e7005e19e836fcb9fd
+b
+2project_dentist/templates/EngagementsCalendar.html,0\a\0a6b13994851abfa13814e1d89cdd19526cae448
+\
+,project_dentist/templates/personel_form.html,1\8\1804bdca259c9ec6866e65d63aa430dad4aaab62
+[
++project_dentist/templates/visit_detail.html,b\9\b9ece2379625038c37da945eee7d1a1914a3e7f7
+X
+(project_dentist/templates/user_list.html,c\0\c06c554355eea3dbcbd50a972c267a71cdd4174b
+e
+5project_dentist/templates/personel_form_continue.html,1\b\1b4582757fc577ba1352f4d1e5a14807279b6f21
+b
+2project_dentist/templates/branch_offices_form.html,9\7\97f21a2f20b8deba6e1bfe32a143f74654a0a185
+k
+;project_dentist/templates/registration/change_password.html,2\f\2f703155459b15e25996c1687360935f947e7330
+P
+ project_dentist/dentist/views.py,c\0\c04a10dbec548e82ef7085f22c783c2436b4df74
+P
+ project_dentist/dentist/forms.py,7\c\7c9571ef2ccd9c8d98d2865732153238c00d9578

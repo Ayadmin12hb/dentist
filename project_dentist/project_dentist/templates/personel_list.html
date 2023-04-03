@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Personel list{% endblock %}
+
+{% block content %}
+    <h2>Personnel list</h2>
+    <table class="table table-success table-striped-columns">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Phone number</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in personel %}
+            <tr>
+                <td>{{ person.user.first_name }}</td>
+                <td>{{ person.user.last_name }}</td>
+                <td>{{ person.phone_number }}</td>
+                <td>{{ person.get_role_display }}</td>
+
+                {% if request.user.personel.role == 'A' %}
+                    <td>
+                        <a href="{% url 'dentist:personel_update' person.pk %}"
+                        type="button" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'dentist:personel_delete' person.pk %}"
+                        type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                {% endif %}
+
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">There are no personnel to display</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if request.user.personel.role == 'A' %}
+            <a href="{% url 'dentist:personel_add' %}"
+                    type="button" class="btn btn-outline-success">Add new personel</a>
+    {% endif %}
+{% endblock %}

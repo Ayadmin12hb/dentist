@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Branch Office list{% endblock %}
+
+{% block content %}
+    <h2>Branch Office list</h2>
+    <table class="table table-success">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for branch_office in branch_offices %}
+            <tr>
+                <td><a href="{% url 'dentist:branch_offices_detail' branch_office.pk %}">{{ branch_office.name }}</a></td>
+                <td>{{ branch_office.address }}</td>
+                <td>{{ branch_office.phone_number }}</td>
+
+
+                {% if request.user.personel.role == 'A' %}
+                <td>
+                    <a href="{% url 'dentist:branch_offices_update' branch_office.pk %}"
+                       type="button" class="btn btn-outline-warning btn-sm">Edit</a>
+                    <a href="{% url 'dentist:branch_offices_delete' branch_office.pk %}"
+                            type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
+                {% endif %}
+
+
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">There are no branch offices to display</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if request.user.personel.role == 'A' %}
+            <a href="{% url 'dentist:branch_offices_add' %}" type="button" class="btn btn-outline-success">
+                Add new Office
+            </a>
+    {% endif %}
+{% endblock %}

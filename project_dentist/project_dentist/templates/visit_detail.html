@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Visit detail{% endblock %}
+
+{% block content %}
+    <h2>Visit Detail</h2>
+    <table class="table table-success table-striped-columns">
+        <thead>
+            <tr>
+                <td>Date</td>
+                <td>{{ object.date }}</td>
+            </tr>
+            <tr>
+                <td>Patient</td>
+                <td>{{ object.patient.name }} {{ object.patient.surname }}</td>
+            </tr>
+            <tr>
+                <td>Doctor</td>
+                <td>{{ object.doctor.user.first_name }} {{ object.doctor.user.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Branch Office</td>
+                <td>{{ object.branch_office }}</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>{{ object.price }} zł</td>
+            </tr>
+            <tr>
+                <td>Service</td>
+                <td>{{ object.service }}</td>
+            </tr>
+            <tr>
+                <td>Visit duration</td>
+                <td>{{ object.visit_duration }}</td>
+            </tr>
+        </thead>
+    </table>
+
+   <a class="btn btn-outline-primary" href="{% url 'dentist:visits_list' %}">Back</a>
+    {% if request.user.personel.role == 'A' %}
+   <a type="button" class="btn btn-outline-warning"
+      href="{% url 'dentist:visit_update' object.pk %}">Edit</a>
+   <a type="button" class="btn btn-outline-danger"
+      href="{% url 'dentist:visit_delete' object.pk %}">Delete</a>
+    {% endif %}
+
+{% endblock %}

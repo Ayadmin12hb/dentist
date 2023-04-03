@@ -1,0 +1,6 @@
+
+€python:S1192!"\Define a constant instead of duplicating this literal 'dentist:branch_offices_list' 4 times.(íô¿€ýÿÿÿÿ8íðÄÇï0
+ypython:S1192ˆ"TDefine a constant instead of duplicating this literal 'dentist:visits_list' 3 times.(ÕË÷Ìýÿÿÿÿ8£†ý§ð0
+zpython:S1192O"VDefine a constant instead of duplicating this literal 'dentist:personel_list' 4 times.(£Õ¥Ñûÿÿÿÿ8îðÄÇï0
+tpython:S1542¨"TRename function "EngagementsCal" to match the regular expression ^[a-z_][a-z0-9_]*$.(¬†ÕÑ8¹•´Àñ0
+=python:S125Ä"Remove this commented out code.(‹¿¶8ŽÅêÈñ0

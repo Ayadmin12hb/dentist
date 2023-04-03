@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <div class="back" style="margin-bottom: 0px;margin-top: 0px;">
+        <br>
+        <h5 class="display-3 glow">Dentist Visits System</h5>
+        <br><br><br><br><br>
+        <p>
+        <h3>Do you have new visit?</h3><br>
+        {% if user.is_authenticated %}
+        <p class="lead">
+            <a href="{% url 'dentist:visits_add' %}" class="btn btn-outline-primary btn-lg">Take Appointment Now!</a>
+            </p>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">First login to system!</a>
+            {% endif %}
+        <br><br>
+        </div>
+        <br><br><br><br>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Branch Office detail{% endblock %}
+
+{% block content %}
+    <h2>Branch Office Detail</h2>
+    <table class="table table-success table-striped-columns">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>{{ object.name }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ object.address }}</td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td>{{ object.phone_number }}</td>
+            </tr>
+        </thead>
+    </table>
+
+   <a class="btn btn-outline-primary" href="{% url 'dentist:branch_offices_list' %}">Back</a>
+    {% if request.user.personel.role == 'A' %}
+   <a type="button" class="btn btn-outline-warning"
+      href="{% url 'dentist:branch_offices_update' object.pk %}">Edit</a>
+   <a type="button" class="btn btn-outline-danger"
+      href="{% url 'dentist:branch_offices_delete' object.pk %}">Delete</a>
+    {% endif %}
+
+{% endblock %}

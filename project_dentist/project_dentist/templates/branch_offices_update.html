@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Update Branch Office</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+            <div class="col-sm-10">
+                <h5>Office name:</h5>
+              <input type="text" class="form-control" name="name" value="{{ object.name }}">
+            </div>
+        </div>
+      <br>
+      <div class="form-group">
+            <div class="col-sm-10">
+                <h5>Office address:</h5>
+              <input type="text" class="form-control" name="address" value="{{ object.address }}">
+            </div>
+        </div>
+      <br>
+      <div class="form-group">
+            <div class="col-sm-10">
+                <h5>Office phone number:</h5>
+              <input type="number" class="form-control" name="phone_number" value="{{ object.phone_number }}">
+            </div>
+        </div>
+      <br>
+
+    <button type="submit" class="btn btn-outline-success">Save</button>
+    <a class="btn btn-outline-primary" href="{% url 'dentist:branch_offices_list' %}">Back</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete personnel{% endblock %}
+
+{% block content %}
+    <h2>Personnel Delete</h2>
+    <p>Are you sure you want to delete the personnel?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-success">Yes</button>
+        <a class="btn btn-outline-primary" href="{% url 'dentist:personel_list' %}">Back</a>
+    </form>
+
+
+{% endblock %}

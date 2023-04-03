@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Add new visit{% endblock %}
+
+{% block content %}
+    <h2>Add new visit</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-success">Add</button>
+        <br>
+        <a class="btn btn-outline-primary" href="{% url 'dentist:visits_list' %}">Back</a>
+    </form>
+{% endblock %}
