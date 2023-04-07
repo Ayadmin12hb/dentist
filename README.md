@@ -1,5 +1,5 @@
 # The aplication for the dentist facility
-> The application allows you to manage visits to the company's dental offices. It serves many offices, employees and clients.
+> This application allows you to manage visits to the dental company's branch offices. It serves many offices, employees and clients.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -14,8 +14,8 @@
 
 ## General Information
 The application is intended to facilitate the keeping of records for dental offices. It is intended for use by dental staff, not by customers.
-The system provides for three roles of registered users: admin, doctor, receptionist.
-I created the application as a final project in the online course 'Python from Scratch' organized by the Software Development Academy.
+The system uses three roles for registered users: admin, doctor, receptionist. Each role has specific permissions.
+The app has been created as a final project in the online course 'Python from Scratch' organized by the Software Development Academy.
 
 
 ## Technologies Used
@@ -28,12 +28,12 @@ I created the application as a final project in the online course 'Python from S
 ## Features
 - add, edit and delete employees - admin only
 - add clients - authenticated user
-- add, edit and delete visits - authenticated user, the system verifies whether the doctor is available at a given time
+- add, edit and delete visits - authenticated user; the system verifies whether the doctor is available at a given time
 - add, edit and delete branch offices - admin only
-- assign an employee to the office - admin only, an employee can be assigned to multiple offices and can also be "detached" from the office, all appointments for the selected employee in the selected office are deleted
+- assign an employee to the office - admin only; an employee can be assigned to multiple offices and can also be "detached" from the office, all appointments with the selected employee in the selected office are deleted
 - check the details of the branch office - authenticated user
 - check the details of the visit - authenticated user
-- a calendar view - authenticated user, the calendar shows free and busy times/dates? for all doctors, an employee can filter by doctors and branch offices
+- a calendar view - authenticated user; the calendar shows free and busy dates and times for all doctors, an employee can filter by doctors and branch offices
 - change the password - authenticated user
 
 
@@ -69,7 +69,7 @@ The project was created together with:
 - Valeriya Kolesnyk,
 - Jaroslaw Rogala,
 - Grzegorz Sitko,
-- Dawid Olejnik.
+- Dawid Olejnik.  
 The calendar is based on FullCalendar by [@Adam Shaw](https://arshaw.com/). Trial version.
 
 
