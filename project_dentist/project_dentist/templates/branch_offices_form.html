@@ -1,32 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Add new Branch Office</h1>
+  <h1>Add New Branch Office</h1>
   <form method="post">
     {% csrf_token %}
     <div class="form-group">
             <div class="col-sm-10">
                 <h5>Office name:</h5>
-              <input type="text" class="form-control" name="name" placeholder="Office name">
+              <input type="text" class="form-control" name="name" style="max-width: 20%">
             </div>
         </div>
       <br>
       <div class="form-group">
             <div class="col-sm-10">
                 <h5>Office address:</h5>
-              <input type="text" class="form-control" name="address" placeholder="Office address">
+              <input type="text" class="form-control" name="address" style="max-width: 20%">
             </div>
         </div>
       <br>
       <div class="form-group">
             <div class="col-sm-10">
-                <h5>Office phone number:</h5>
-              <input type="number" class="form-control" name="phone_number" placeholder="Office phone number">
+                <h5>Office Phone number:</h5>
+              <input type="number" class="form-control" name="phone_number" style="max-width: 20%">
             </div>
         </div>
       <br>
-    <button type="submit" class="btn btn-outline-success">Save</button>
-    <br>
-    <a class="btn btn-outline-primary" href="{% url 'dentist:branch_offices_list' %}">Back</a>
+    <button type="submit" class="btn btn-outline-success">Save</button> <a
+          class="btn btn-outline-primary" href="{% url 'dentist:branch_offices_list' %}">Back</a>
   </form>
 {% endblock %}

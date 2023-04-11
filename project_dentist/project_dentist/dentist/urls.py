@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from django.urls import include
 
 app_name = 'dentist'
 
@@ -15,6 +14,8 @@ urlpatterns = [
     path('<int:pk>/delete/', views.delete_branch_office, name='delete_branch_office'),
     path('patients/', views.patients_list, name='patients_list'),
     path('patients/add/', views.patients_add, name='patients_add'),
+    path('patients/update/<int:pk>', views.PatientUpdate.as_view(), name='patients_update'),
+    path('patients/delete/<int:pk>', views.PatientDelete.as_view(), name='patients_delete'),
 
     path('users/', views.user_list, name='user_list'),
     path('personel/', views.personel_list, name='personel_list'),
@@ -29,7 +30,7 @@ urlpatterns = [
     path('visits/delete/<int:pk>', views.VisitDelete.as_view(), name='visit_delete'),
     path('visits/detail/<int:pk>', views.VisitDetail.as_view(), name='visit_detail'),
 
-    path('EngagementsCalendar/', views.EngagementsCal, name='EngagementsCal'),
+    path('EngagementsCalendar/', views.engagements_cal, name='EngagementsCal'),
 
     path('password/', views.ChangePasswordView.as_view(), name='new_password'),
     # path('password_changes', views.password_changes, name='password_changes'),

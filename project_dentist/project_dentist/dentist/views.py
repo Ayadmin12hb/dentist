@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import BranchOffices, Patients, Personel, Visits, getAllVisits
@@ -63,6 +65,21 @@ def patients_add(request):
     return render(request, 'patients_form.html', {'form': form})
 
 
+class PatientUpdate(PermissionRequiredMixin, UpdateView):
+    model = Patients
+    fields = '__all__'
+    template_name = 'patients_update.html'
+    success_url = reverse_lazy('dentist:patients_list')
+    permission_required = 'dentist.change_patients'
+
+
+class PatientDelete(PermissionRequiredMixin, DeleteView):
+    model = Patients
+    template_name = 'patients_confirm_delete.html'
+    success_url = reverse_lazy('dentist:patients_list')
+    permission_required = 'dentist.delete_patients'
+
+
 def personel_list(request):
     personel = Personel.objects.all()
     return render(request, 'personel_list.html', {'personel': personel})
@@ -95,6 +112,7 @@ class PersonelAddContinue(CreateView):
         user = get_object_or_404(User, id=user_id)
         initial['user'] = user
         return initial
+
 
 @receiver(post_save, sender=Personel)
 def create_user_group(sender, instance, created, **kwargs):
@@ -165,7 +183,7 @@ def delete_branch_office(request, pk):
     return render(request, 'delete_branch_office.html', {'branch_office': branch_office})
 
 
-def EngagementsCal(request):
+def engagements_cal(request):
     branch_offices = BranchOffices.objects.all()
     doctors = Personel.objects.filter(role='D')
 
@@ -191,8 +209,3 @@ class ChangePasswordView(PasswordChangeView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('dentist:home')
     template_name = 'registration/change_password.html'
-
-
-# def password_changes(request):
-#     return render(request, 'registration/password_changes.html', {})
-

@@ -25,7 +25,7 @@
                 <td>{{ visit.branch_office }}</td>
                 <td>{{ visit.price }} zł</td>
                 <td>{{ visit.service }}</td>
-                <td>{{ visit.visit_duration }}</td>
+                <td>{{ visit.visit_duration.hour }}:{{ visit.visit_duration.minute }}</td>
 
                     <td>
                         <a href="{% url 'dentist:visit_update' visit.pk %}"

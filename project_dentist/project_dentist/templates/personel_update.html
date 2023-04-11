@@ -5,8 +5,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-outline-success">Save</button>
-    <br>
-  <a class="btn btn-outline-primary" href="{% url 'dentist:personel_list' %}">Back</a>
+    <button type="submit" class="btn btn-outline-success">Save</button> <a
+          class="btn btn-outline-primary" href="{% url 'dentist:personel_list' %}">Back</a>
   </form>
 {% endblock %}

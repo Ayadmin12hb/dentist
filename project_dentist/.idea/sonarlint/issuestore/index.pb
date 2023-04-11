@@ -3,8 +3,6 @@ O
 project_dentist/dentist/apps.py,c\4\c4337a3fb7e827f7ee062c04ca949eea104ca0c3
 W
 'project_dentist/project_dentist/urls.py,8\2\826a9507d393383f058fc07627ef00765318f6e6
-[
-+project_dentist/project_dentist/settings.py,2\d\2df1530b9457e43fb9e8d6c4994a0680098589f4
 ^
 .project_dentist/templates/personel_update.html,c\7\c735ae0f5e44c7f0960241d8d7f7c970ebfc0739
 S
@@ -65,3 +63,5 @@ P
  project_dentist/dentist/views.py,c\0\c04a10dbec548e82ef7085f22c783c2436b4df74
 P
  project_dentist/dentist/forms.py,7\c\7c9571ef2ccd9c8d98d2865732153238c00d9578
+[
++project_dentist/project_dentist/settings.py,2\d\2df1530b9457e43fb9e8d6c4994a0680098589f4

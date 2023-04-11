@@ -1,5 +1,5 @@
 # The aplication for the dentist facility
-> This application allows you to manage visits to the dental company's branch offices. It serves many offices, employees and clients.
+> This application allows you to manage visits to the dental company's branch offices. It serves many offices, employees and patients.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -13,7 +13,7 @@
 
 
 ## General Information
-The application is intended to facilitate the keeping of records for dental offices. It is intended for use by dental staff, not by customers.
+The application is intended to facilitate the keeping of records for dental offices. It is intended for use by dental staff, not by patients.
 The system uses three roles for registered users: admin, doctor, receptionist. Each role has specific permissions.
 The app has been created as a final project in the online course 'Python from Scratch' organized by the Software Development Academy.
 
@@ -28,7 +28,7 @@ The app has been created as a final project in the online course 'Python from Sc
 ## Features
 - add, edit and delete employees - admin only
 - add clients - authenticated user
-- add, edit and delete visits - authenticated user; the system verifies whether the doctor is available at a given time
+- add, edit and delete visits - authenticated user; the system verifies whether the doctor is available at a given time and verifies doctor's working hours
 - add, edit and delete branch offices - admin only
 - assign an employee to the office - admin only; an employee can be assigned to multiple offices and can also be "detached" from the office, all appointments with the selected employee in the selected office are deleted
 - check the details of the branch office - authenticated user
@@ -70,6 +70,7 @@ The project was created together with:
 - Jaroslaw Rogala,
 - Grzegorz Sitko,
 - Dawid Olejnik.  
+
 The calendar is based on FullCalendar by [@Adam Shaw](https://arshaw.com/). Trial version.
 
 

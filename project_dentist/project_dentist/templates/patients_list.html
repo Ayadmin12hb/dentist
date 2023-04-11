@@ -22,6 +22,11 @@
                 <td>{{ patient.phone_number }}</td>
                 <td>{{ patient.email }}</td>
                 <td>{{ patient.pesel }}</td>
+                <td><a href="{% url 'dentist:patients_update' patient.pk %}" type="button"
+                        class="btn btn-outline-warning btn-sm">Edit</a> <a
+                        href="{% url 'dentist:patients_delete' patient.pk %}"
+                            type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
             </tr>
             {% empty %}
             <tr>

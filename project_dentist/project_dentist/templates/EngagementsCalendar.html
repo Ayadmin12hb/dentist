@@ -9,39 +9,55 @@
 {% block body_block %}
 <meta charset="utf-8" />
 {% load static %}
-<link href='{% static "fullcalendar/packages/core/main.css"%}' rel='stylesheet' />
-<link href='{% static "fullcalendar/packages/daygrid/main.css"%}' rel='stylesheet' />
+<link href='{% static "fullcalendar/packages/core/main.css" %}' rel='stylesheet' />
+<link href='{% static "fullcalendar/packages/daygrid/main.css" %}' rel='stylesheet' />
+<link href='{% static "fullcalendar/packages/timegrid/main.css" %}' rel='stylesheet' />
+<link href='{% static "fullcalendar/packages/list/main.css" %}' rel='stylesheet' />
 <script src='{% static "fullcalendar/packages/core/main.js" %}'></script>
 <script src='{% static "fullcalendar/packages/interaction/main.js" %}'></script>
 <script src='{% static "fullcalendar/packages/daygrid/main.js" %}'></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+<script src='{% static "fullcalendar/packages/timegrid/main.js" %}'></script>
+<script src='{% static "fullcalendar/packages/list/main.js" %}'></script>
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['interaction', 'dayGrid'],
-            header: {
-                left: 'prevYear,prev,next,nextYear today',
-                center: 'title',
-                right: 'dayGridMonth,dayGridWeek,dayGridDay'
-            },
-            navLinks: true,
-            editable: false,
-            hiddenDays: [6, 0],
-            eventLimit: true,
-            events: [
-              {%for i in events %} {
-                    title: "{{ i.title}}",
-                    start: "{{ i.start}}",
-                    end: '{{ i.end}}',
-                    url: '/visits/detail/{{ i.id }}',
-                    backgroundColor: '{{i.color}}',
-                    borderColor: 'white'
-                },
-                {% endfor %}
-            ]
-        });
-        calendar.render();
+<script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+     navLinks: true,
+     editable: false,
+     allDaySlot: false,
+     hiddenDays: [6, 0],
+     eventLimit: true,
+    slotDuration: '00:15:00',
+    slotLabelInterval: '01:00',
+    slotLabelFormat: {
+      hour: 'numeric',
+      minute: '2-digit',
+      omitZeroMinute: false,
+      meridiem: false
+    },
+    events: [
+    {%for i in events %} {
+      title: "{{ i.title}}",
+      start: "{{ i.start}}",
+      end: '{{ i.end}}',
+      url: '/visits/detail/{{ i.id }}',
+      backgroundColor: '{{i.color}}',
+      borderColor: 'white'
+    },
+    {% endfor %}
+  ]
+});
+calendar.render();
     });
 </script>
 <div style="padding:25px">

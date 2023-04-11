@@ -21,9 +21,12 @@ class PatientsForm(forms.ModelForm):
 class UserForm(UserCreationForm):
 
     username = forms.CharField(max_length=64)
-    first_name = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                              'style': 'max-width: 20%;'}))
+    last_name = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                             'style': 'max-width: 20%;'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                            'style': 'max-width: 20%;'}))
 
     class Meta:
         model = User
@@ -33,8 +36,13 @@ class UserForm(UserCreationForm):
         super(UserForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['style'] = 'max-width: 20%'
+
         self.fields['password1'].widget.attrs['class'] = 'form-control'
+        self.fields['password1'].widget.attrs['style'] = 'max-width: 20%'
+
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+        self.fields['password2'].widget.attrs['style'] = 'max-width: 20%'
 
 
 class PersonelForm(forms.ModelForm):
@@ -42,9 +50,14 @@ class PersonelForm(forms.ModelForm):
         model = Personel
         fields = ('user', 'phone_number', 'role', 'branch_office', 'start_work', 'end_work')
         widgets = {
-            'role': forms.RadioSelect(),
-            'user': forms.HiddenInput(),
-            'branch_office': forms.CheckboxSelectMultiple()
+            'user': forms.HiddenInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.NumberInput(attrs={'class': 'form-control', 'style': 'max-width: 10%;',
+                                                     'type': 'number'}),
+            'role': forms.Select(attrs={'class': 'form-control', 'style': 'max-width: 10%; text-align: center',
+                                        'type': 'select'}),
+            'branch_office': forms.CheckboxSelectMultiple(attrs={'type': 'checkbox'}),
+            'start_work': forms.TimeInput(attrs={'class': 'form-control', 'style': 'max-width: 10%;', 'type': 'time'}),
+            'end_work': forms.TimeInput(attrs={'class': 'form-control', 'style': 'max-width: 10%;', 'type': 'time'}),
         }
 
 
@@ -53,13 +66,19 @@ class VisitsForm(forms.ModelForm):
         model = Visits
         fields = ['date', 'patient', 'doctor', 'branch_office', 'price', 'service', 'visit_duration']
         widgets = {
-            'date': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
-            'patient': forms.Select(attrs={'class': 'form-control', 'type': 'select'}),
-            'doctor': forms.Select(attrs={'class': 'form-control', 'type': 'select'}),
-            'branch_office': forms.Select(attrs={'class': 'form-control', 'type': 'select'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control', 'type': 'number'}),
-            'service': forms.TextInput(attrs={'class': 'form-control', 'type': 'text'}),
-            'visit_duration': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),
+            'date': forms.DateTimeInput(attrs={'class': 'form-control', 'style': 'max-width: 15%;',
+                                               'type': 'datetime-local'}),
+            'patient': forms.Select(attrs={'class': 'form-control', 'style': 'max-width: 15%;',
+                                           'type': 'select'}),
+            'doctor': forms.Select(attrs={'class': 'form-control', 'style': 'max-width: 15%;',
+                                          'type': 'select'}),
+            'branch_office': forms.Select(attrs={'class': 'form-control',
+                                                 'style': 'max-width: 15%;', 'type': 'select'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'style': 'max-width: 10%;', 'type': 'number'}),
+            'service': forms.Textarea(attrs={'class': 'form-control', 'style': 'max-width: 30%; max-height: 100px;',
+                                             'type': 'text'}),
+            'visit_duration': forms.TimeInput(attrs={'class': 'form-control', 'style': 'max-width: 8%;',
+                                                     'type': 'time'})
         }
 
     def clean(self):
@@ -68,15 +87,19 @@ class VisitsForm(forms.ModelForm):
         doctor = cleaned_data.get('doctor')
         visit_duration = cleaned_data.get('visit_duration')
 
-        if date and doctor:
+        if date and doctor and visit_duration:
             hours, minutes = visit_duration.hour, visit_duration.minute
             visit_timedelta = datetime.timedelta(hours=hours, minutes=minutes)
 
             start_time = datetime.datetime.combine(date.date(), date.time())
             end_time = start_time + visit_timedelta
 
-            existing_visits = Visits.objects.filter(doctor=doctor, date__date=date.date())
-            print(existing_visits)
+            existing_visits = Visits.objects.filter(doctor=doctor, date__date=date.date()).exclude(date=date)
+
+            if doctor.start_work > start_time.time():
+                raise forms.ValidationError("The doctor has not started work yet")
+            if doctor.end_work < end_time.time():
+                raise forms.ValidationError("The doctor already finished work")
 
             for visit in existing_visits:
 
@@ -85,11 +108,11 @@ class VisitsForm(forms.ModelForm):
                 visit_timedelta = datetime.timedelta(hours=hours, minutes=minutes)
                 visit_end_time = visit_start_time + visit_timedelta
 
-                if visit_start_time < start_time and visit_end_time > start_time:
+                if visit_start_time < start_time < visit_end_time:
                     raise forms.ValidationError('This doctor already has an appointment at this time')
-                elif visit_end_time > end_time and visit_start_time < end_time:
+                if visit_end_time > end_time > visit_start_time:
                     raise forms.ValidationError('This doctor already has an appointment at this time')
-                elif visit_start_time > start_time and visit_end_time < end_time:
+                if visit_start_time > start_time and visit_end_time < end_time:
                     raise forms.ValidationError('This doctor already has an appointment at this time')
 
             return cleaned_data
@@ -97,11 +120,14 @@ class VisitsForm(forms.ModelForm):
 
 class ChangePasswordForm(PasswordChangeForm):
     old_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password',
+                                          'style': 'max-width: 20%;'}))
     new_password1 = forms.CharField(
-        max_length=50, widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+        max_length=50, widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password',
+                                                         'style': 'max-width: 20%;'}))
     new_password2 = forms.CharField(
-        max_length=50, widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+        max_length=50, widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password',
+                                                         'style': 'max-width: 20%;'}))
 
     class Meta:
         model = User
