@@ -44,6 +44,7 @@ To run the app you have to:
 - activate your virtual environment (Windows: 'venv\Scripts\activate', Linux/Mac OS: 'source venv/bin/activate'),
 - install Django (e.g. 'pip install Django'),
 - go to the project directory where the 'manage.py' file is ('/project_dentist/project_dentist/'),
+- create superuser ('py manage.py createsuperuser' -> enter your login and password),
 - run temporary server ('py manage.py runserver'),
 - copy the server address to your browser.
 
